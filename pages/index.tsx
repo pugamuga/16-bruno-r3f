@@ -1,30 +1,23 @@
+import { OrbitControls, Sky } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
-import { useRecoilState } from "recoil";
-import DarkModeToggle from "../components/DarkModeToggle";
-import SvgIcon from "../components/SvgIcon";
-import { testState } from "../recoilState/recoilState";
+import Knot from "../components/MeshElements/Knot";
+import Sphere from "../components/MeshElements/Sphere";
 
 const Home: NextPage = (): JSX.Element => {
-  const [state, setState] = useRecoilState(testState);
   return (
-    <div className="flex min-h-screen bg-violet-100  flex-col items-center justify-center py-2 ">
-      <DarkModeToggle />
-      <div className=" flex flex-col relative items-center border-y-2 border-y-red-500 py-4">
-        <div>Recoil state: {state.toString()}</div>
-        <div className=" text-red-500 text-5xl font-kufiM">PugaMuga</div>
-        <div className=" text-white text-5xl font-nablaPixel bg-slate-900 px-4 py-2 my-2">
-          PugaMuga
-        </div>
-        <div className=" text-red-500 text-5xl font-strongItalik">PugaMuga</div>
-        <div className=" text-red-500 text-5xl font-lobster">PugaMuga</div>
-        <div className=" absolute top-[-13px] right-[-21px] rotate-90 hover:rotate-0 tr-700">
-          <SvgIcon onClick={() => {
-            setState(!state)
-          }}/>
-        </div>
-      </div>
+    <div className=" bg-black/10 h-screen w-full">
+      <Canvas>
+        <OrbitControls minAzimuthAngle={0}/>
+        <Sky
+          distance={450000}
+          sunPosition={[0, 1, 0]}
+          inclination={0}
+          azimuth={0.25}
+        />
+        {/* <Knot/> */}
+        <Sphere />
+      </Canvas>
     </div>
   );
 };
