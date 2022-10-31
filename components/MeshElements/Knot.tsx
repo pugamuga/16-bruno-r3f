@@ -3,7 +3,7 @@ export default function Knot(): JSX.Element {
     <>
       <mesh>
         <torusKnotGeometry />
-        <meshNormalMaterial color={"hotpink"} />
+        <meshNormalMaterial color="hotpink" />
       </mesh>
     </>
   );
