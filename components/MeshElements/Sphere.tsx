@@ -6,6 +6,7 @@ import {
   useFrame,
   useThree,
 } from "@react-three/fiber";
+import { Perf } from "r3f-perf";
 import { useEffect, useRef, useState } from "react";
 import { RecoilRoot } from "recoil";
 import TestElement from "../TestElement";
@@ -36,6 +37,7 @@ export default function Sphere(): JSX.Element {
 
   return (
     <>
+    <Perf position="bottom-left"/>
       <group ref={groupRef}>
         <PivotControls
           anchor={[0, 0, 0]}
