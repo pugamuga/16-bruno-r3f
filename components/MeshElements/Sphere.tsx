@@ -1,4 +1,4 @@
-import { Html, PivotControls, TransformControls } from "@react-three/drei";
+import { Html, MeshReflectorMaterial, PivotControls, TransformControls } from "@react-three/drei";
 import {
   GroupProps,
   MeshProps,
@@ -7,6 +7,7 @@ import {
   useThree,
 } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import { RecoilRoot } from "recoil";
 import TestElement from "../TestElement";
 import CustomGeometry from "./CustomGeometry";
 
@@ -63,10 +64,15 @@ export default function Sphere(): JSX.Element {
         <mesh ref={boxRef} position-x={2} scale={1.5} rotation-y={0}>
           <boxGeometry />
           <meshStandardMaterial color={"hotpink"} />
-          <Html position={[0, 0, 0]} distanceFactor={8} center
-          occlude={[sphereRef]}
+          <Html
+            position={[0, 0, 0]}
+            distanceFactor={8}
+            center
+            occlude={[sphereRef]}
           >
-            <TestElement />
+            <RecoilRoot>
+              <TestElement />
+            </RecoilRoot>
           </Html>
         </mesh>
         {/* @ts-ignore */}
@@ -75,7 +81,13 @@ export default function Sphere(): JSX.Element {
       {/* <CustomGeometry /> */}
       <mesh scale={10} rotation-x={(Math.PI * -1) / 2} position-y={-0.75}>
         <planeGeometry />
-        <meshStandardMaterial color={"greenyellow"} />
+        <MeshReflectorMaterial 
+        color={"greenyellow"} 
+        resolution={256}
+        blur={[1000,1000]}
+        mixBlur={1}
+        mirror={.5}
+        />
       </mesh>
     </>
   );

@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { testState } from "../recoilState/recoilState";
 
 export default function TestElement(): JSX.Element {
-  const [text, setText] = useState(true);
+  const [text, setText] = useRecoilState(testState);
 
   return (
     <>
