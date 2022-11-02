@@ -1,4 +1,11 @@
-import { Html, OrbitControls, Sky, softShadows } from "@react-three/drei";
+import {
+  AccumulativeShadows,
+  Html,
+  OrbitControls,
+  RandomizedLight,
+  Sky,
+  softShadows,
+} from "@react-three/drei";
 import { Canvas, RootState } from "@react-three/fiber";
 import type { NextPage } from "next";
 import { useRecoilState } from "recoil";
@@ -8,7 +15,7 @@ import Sphere from "../components/MeshElements/Sphere";
 import TextThreeD from "../components/MeshElements/TextThreeD";
 import TestElement from "../components/TestElement";
 import { testState } from "../recoilState/recoilState";
-//@ts-ignore 
+//@ts-ignore
 import { Color } from "three";
 import InsideCanvas from "../components/InsideCanvas";
 
@@ -33,6 +40,21 @@ const Home: NextPage = (): JSX.Element => {
         {text ? "false" : "true"}
       </div>
       <Canvas shadows={true}>
+        <AccumulativeShadows
+        color="#316d39"
+        opacity={.5}
+        frames={60}
+        position={[0, 0.01, 0]} scale={10}>
+          <RandomizedLight
+            castShadow
+            position={[0, 3, 3]}
+            amount={8}
+            radius={1}
+            ambient={0.5}
+            intensity={1}
+            bias={0.001}
+          />
+        </AccumulativeShadows>
         <InsideCanvas />
       </Canvas>
       {/* <Canvas
