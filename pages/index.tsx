@@ -1,5 +1,6 @@
 import {
   AccumulativeShadows,
+  ContactShadows,
   Html,
   OrbitControls,
   RandomizedLight,
@@ -18,16 +19,16 @@ import { testState } from "../recoilState/recoilState";
 //@ts-ignore
 import { Color } from "three";
 import InsideCanvas from "../components/InsideCanvas";
+import StageTesting from "../components/StageTesting";
 
 // softShadows();
 
 const Home: NextPage = (): JSX.Element => {
   const [text, setText] = useRecoilState(testState);
 
-  const created = (state: RootState) => {
-    console.log("canvas created");
-    console.log(state.gl);
-  };
+  
+
+  console.log(ContactShadows);
 
   return (
     <div className=" bg-black/10 h-screen w-full">
@@ -39,8 +40,8 @@ const Home: NextPage = (): JSX.Element => {
       >
         {text ? "false" : "true"}
       </div>
-      <Canvas shadows={true}>
-        <AccumulativeShadows
+      <Canvas shadows={false}>
+        {/* <AccumulativeShadows
         color="#316d39"
         opacity={.5}
         frames={60}
@@ -54,8 +55,9 @@ const Home: NextPage = (): JSX.Element => {
             intensity={1}
             bias={0.001}
           />
-        </AccumulativeShadows>
-        <InsideCanvas />
+        </AccumulativeShadows> */}
+        <StageTesting/>
+        {/* <InsideCanvas /> */}
       </Canvas>
       {/* <Canvas
       shadows={true}
