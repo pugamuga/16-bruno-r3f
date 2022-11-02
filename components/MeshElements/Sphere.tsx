@@ -1,4 +1,11 @@
-import { Html, MeshReflectorMaterial, PivotControls, TransformControls } from "@react-three/drei";
+import {
+  BakeShadows,
+  Html,
+  MeshReflectorMaterial,
+  PivotControls,
+  softShadows,
+  TransformControls,
+} from "@react-three/drei";
 import {
   GroupProps,
   MeshProps,
@@ -12,7 +19,13 @@ import { RecoilRoot } from "recoil";
 import TestElement from "../TestElement";
 import CustomGeometry from "./CustomGeometry";
 
-export default function Sphere(): JSX.Element {
+interface IProps {
+  scale: string;
+  positionX: number;
+}
+
+
+export default function Sphere({ scale, positionX }: IProps): JSX.Element {
   const [sphereColor, setSphereColor] = useState("mediumpurple");
 
   const boxRef = useRef<MeshProps>(null);
@@ -37,7 +50,8 @@ export default function Sphere(): JSX.Element {
 
   return (
     <>
-    <Perf position="bottom-left"/>
+      <BakeShadows />
+      <Perf position="bottom-left" />
       <group ref={groupRef}>
         <PivotControls
           anchor={[0, 0, 0]}
@@ -47,6 +61,7 @@ export default function Sphere(): JSX.Element {
           scale={2}
         >
           <mesh
+            castShadow
             ref={sphereRef}
             onClick={() => {
               if (sphereColor === "mediumpurple") {
@@ -63,7 +78,7 @@ export default function Sphere(): JSX.Element {
             <meshStandardMaterial color={sphereColor} />
           </mesh>
         </PivotControls>
-        <mesh ref={boxRef} position-x={2} scale={1.5} rotation-y={0}>
+        <mesh ref={boxRef} position-x={2} scale={1.5} rotation-y={0} castShadow>
           <boxGeometry />
           <meshStandardMaterial color={"hotpink"} />
           <Html
@@ -81,15 +96,14 @@ export default function Sphere(): JSX.Element {
         <TransformControls object={boxRef} mode="translate" />
       </group>
       {/* <CustomGeometry /> */}
-      <mesh scale={10} rotation-x={(Math.PI * -1) / 2} position-y={-0.75}>
+      <mesh
+        scale={10}
+        rotation-x={(Math.PI * -1) / 2}
+        position-y={-0.75}
+        receiveShadow
+      >
         <planeGeometry />
-        <MeshReflectorMaterial 
-        color={"greenyellow"} 
-        resolution={256}
-        blur={[1000,1000]}
-        mixBlur={1}
-        mirror={.5}
-        />
+        <meshStandardMaterial color={"greenyellow"} />
       </mesh>
     </>
   );

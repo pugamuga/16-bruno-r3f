@@ -1,5 +1,5 @@
-import { Html, OrbitControls, Sky } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Html, OrbitControls, Sky, softShadows } from "@react-three/drei";
+import { Canvas, RootState } from "@react-three/fiber";
 import type { NextPage } from "next";
 import { useRecoilState } from "recoil";
 import Lights from "../components/Lights";
@@ -8,9 +8,19 @@ import Sphere from "../components/MeshElements/Sphere";
 import TextThreeD from "../components/MeshElements/TextThreeD";
 import TestElement from "../components/TestElement";
 import { testState } from "../recoilState/recoilState";
+//@ts-ignore 
+import { Color } from "three";
+import InsideCanvas from "../components/InsideCanvas";
+
+// softShadows();
 
 const Home: NextPage = (): JSX.Element => {
   const [text, setText] = useRecoilState(testState);
+
+  const created = (state: RootState) => {
+    console.log("canvas created");
+    console.log(state.gl);
+  };
 
   return (
     <div className=" bg-black/10 h-screen w-full">
@@ -20,10 +30,14 @@ const Home: NextPage = (): JSX.Element => {
         }}
         className=" absolute top-10 left-10 bg-black/20 text-white z-10 p-3 cursor-pointer select-none"
       >
-        {text?"false":"true"}
+        {text ? "false" : "true"}
       </div>
-      <Canvas
-        // dpr={[1,2]}
+      <Canvas shadows={true}>
+        <InsideCanvas />
+      </Canvas>
+      {/* <Canvas
+      shadows={true}
+      onCreated={created}
         gl={{
           toneMapping: 4,
         }}
@@ -32,6 +46,7 @@ const Home: NextPage = (): JSX.Element => {
           position: [3, 2, 5],
         }}
       >
+        <color args={["ivory"]} attach="background"/>
         <Lights />
         <OrbitControls
           minPolarAngle={0}
@@ -39,17 +54,18 @@ const Home: NextPage = (): JSX.Element => {
           enableDamping={true}
           makeDefault
         />
-        <TextThreeD/>
+        <TextThreeD />
+        <Knot/>
         <Sky
           distance={450000}
           sunPosition={[0, 1, 0]}
           inclination={0}
           azimuth={0.25}
         />
-        {/* <Knot/> */}
+        <Knot/>
 
-        <Sphere />
-      </Canvas>
+        <Sphere scale={"ten"} positionX={-2}/>
+      </Canvas> */}
     </div>
   );
 };
