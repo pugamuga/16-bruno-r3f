@@ -20,6 +20,7 @@ import { testState } from "../recoilState/recoilState";
 import { Color } from "three";
 import InsideCanvas from "../components/InsideCanvas";
 import StageTesting from "../components/StageTesting";
+import TextLesson from "../components/TextLesson";
 
 // softShadows();
 
@@ -56,7 +57,8 @@ const Home: NextPage = (): JSX.Element => {
             bias={0.001}
           />
         </AccumulativeShadows> */}
-        <StageTesting/>
+        {/* <StageTesting/> */}
+        <TextLesson/>
         {/* <InsideCanvas /> */}
       </Canvas>
       {/* <Canvas
