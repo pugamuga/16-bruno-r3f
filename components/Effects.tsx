@@ -1,7 +1,16 @@
-import { Bloom, DepthOfField, EffectComposer, Noise, Vignette } from "@react-three/postprocessing";
+import {
+  Bloom,
+  DepthOfField,
+  EffectComposer,
+  Noise,
+  Vignette,
+} from "@react-three/postprocessing";
 import { BlendFunction } from "postprocessing";
+import { useRef } from "react";
+import Drunk from "./Effects/Drunk";
 
-export default function Effects():JSX.Element {
+export default function Effects(): JSX.Element {
+  const refDrunk = useRef();
   return (
     <>
       <EffectComposer>
@@ -19,7 +28,8 @@ export default function Effects():JSX.Element {
         bokehScale={6}
         focalLength={.025}        
         /> */}
+        <Drunk/>
       </EffectComposer>
     </>
-  )
+  );
 }

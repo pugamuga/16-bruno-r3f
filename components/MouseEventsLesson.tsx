@@ -19,14 +19,14 @@ export default function MouseEventsLesson(): JSX.Element {
   return (
     <>
       <Effects />
-      <Perf position="top-left" />
+      <Perf position="top-right" />
       <OrbitControls
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2.1}
         enableDamping={true}
         makeDefault
       />
-      <color args={["black"]} attach="background" />
+      <color args={["ivory"]} attach="background" />
       <ambientLight intensity={0.3} />
       <directionalLight position={[1, 2, 3]} intensity={1.5} castShadow />
       <mesh
