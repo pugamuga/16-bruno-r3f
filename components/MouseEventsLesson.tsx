@@ -2,10 +2,11 @@ import { Html, OrbitControls, Stage } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Perf } from "r3f-perf";
 import { useRef, useState } from "react";
+import Effects from "./Effects";
 
 export default function MouseEventsLesson(): JSX.Element {
   const [cubeColor, setCubeColor] = useState<"hotpink" | "gray">("hotpink");
-  const [currentColorSphere, setcurrentColorSphere] = useState<string>("click");
+  const [currentColorSphere, setcurrentColorSphere] = useState<any>("click");
   const [show, setShow] = useState<boolean>(false);
   const boxRef = useRef<any>();
   const sphereRef = useRef<any>();
@@ -17,14 +18,15 @@ export default function MouseEventsLesson(): JSX.Element {
   });
   return (
     <>
-      <Perf />
+      <Effects />
+      <Perf position="top-left" />
       <OrbitControls
         minPolarAngle={0}
         maxPolarAngle={Math.PI / 2.1}
         enableDamping={true}
         makeDefault
       />
-      <color args={["ivory"]} attach="background" />
+      <color args={["black"]} attach="background" />
       <ambientLight intensity={0.3} />
       <directionalLight position={[1, 2, 3]} intensity={1.5} castShadow />
       <mesh
@@ -63,26 +65,19 @@ export default function MouseEventsLesson(): JSX.Element {
           setShow(false);
         }}
         onClick={(e) => {
-          console.log(e);
-          //   e.stopPropagation()
-          let curColor = `rgb(${Math.round(Math.random() * 255)}, ${Math.round(
-            Math.random() * 255
-          )}, ${Math.round(Math.random() * 255)})`;
-          sphereRef.current.material.color.set(curColor);
+          const convinientNumber1 = Number((Math.random() * 255).toFixed(0));
+          const convinientNumber2 = Number((Math.random() * 255).toFixed(0));
+          const convinientNumber3 = Number((Math.random() * 255).toFixed(0));
+          let curColor = `rgb(${convinientNumber1},${convinientNumber2},${convinientNumber3})`;
+        //   sphereRef.current.material.color.set(curColor);
           setcurrentColorSphere(curColor);
         }}
       >
         <sphereGeometry />
-        <meshStandardMaterial color={"orange"} />
+        <meshBasicMaterial color={[1.5,1,4]} />
         {show && (
-          <Html center>
-            <div
-              onPointerEnter={() => {
-                document.body.style.cursor = "pointer";
-                setShow(true);
-              }}
-              className=" bg-black/50 superflex py-1 rounded-md  tr-300  select-none"
-            >
+          <Html center position-y={1.2}>
+            <div className=" bg-black/50 superflex py-1 rounded-md  tr-300  select-none">
               <p className="w-48 text-center text-white font-bold">
                 {currentColorSphere}
               </p>
