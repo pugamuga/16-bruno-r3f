@@ -22,6 +22,7 @@ import InsideCanvas from "../components/InsideCanvas";
 import StageTesting from "../components/StageTesting";
 import TextLesson from "../components/TextLesson";
 import Portal from "../components/Portal";
+import MouseEventsLesson from "../components/MouseEventsLesson";
 
 // softShadows();
 
@@ -42,7 +43,7 @@ const Home: NextPage = (): JSX.Element => {
       >
         {text ? "false" : "true"}
       </div>
-      <Canvas shadows={false} flat>
+      <Canvas shadows={true} flat>
         {/* <AccumulativeShadows
         color="#316d39"
         opacity={.5}
@@ -60,7 +61,8 @@ const Home: NextPage = (): JSX.Element => {
         </AccumulativeShadows> */}
         {/* <StageTesting/> */}
         {/* <TextLesson/> */}
-        <Portal/>
+        {/* <Portal/> */}
+        <MouseEventsLesson/>
         {/* <InsideCanvas /> */}
       </Canvas>
       {/* <Canvas
