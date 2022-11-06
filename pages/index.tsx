@@ -23,6 +23,7 @@ import StageTesting from "../components/StageTesting";
 import TextLesson from "../components/TextLesson";
 import Portal from "../components/Portal";
 import MouseEventsLesson from "../components/MouseEventsLesson";
+import Physics from "../components/MeshElements/Physics";
 
 // softShadows();
 
@@ -62,7 +63,8 @@ const Home: NextPage = (): JSX.Element => {
         {/* <StageTesting/> */}
         {/* <TextLesson/> */}
         {/* <Portal/> */}
-        <MouseEventsLesson/>
+        {/* <MouseEventsLesson/> */}
+        <Physics/>
         {/* <InsideCanvas /> */}
       </Canvas>
       {/* <Canvas
