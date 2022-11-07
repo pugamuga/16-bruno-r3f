@@ -6,8 +6,9 @@ import {
   RigidBody,
   CuboidCollider,
 } from "@react-three/rapier";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Katana from "./Katana";
+import { GroupProps } from "@react-three/fiber";
 
 export default function Physics(): JSX.Element {
   const cubeRef = useRef<any>();
@@ -21,11 +22,11 @@ export default function Physics(): JSX.Element {
       <directionalLight position={[1, 2, 3]} castShadow intensity={1.5} />
       <ambientLight intensity={0.5} />
       <PhysicsRapier gravity={[0, -9.8, 0]}>
-        <RigidBody>
-          <Katana position-y={4} />
+        <RigidBody rotation-y={Math.PI*-1/2}>
+          <Katana position-y={4}  scale={.5}/>
         </RigidBody>
 
-        <Debug />
+        {/* <Debug /> */}
         <RigidBody ref={cubeRef} friction={0.7} colliders={false}>
           <CuboidCollider
             args={[0.5, 0.5, 0.5]}

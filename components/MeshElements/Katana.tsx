@@ -7,15 +7,17 @@ export default function Katana(props: GroupProps): JSX.Element {
   console.log(katana.nodes.Blade);
   return (
     <>
-      <group {...props}>
+      <group {...props} >
         <mesh
-          position={[1,0,-.095]}
+          castShadow
+          position={[1, 0, -0.095]}
           rotation={katana.nodes.Blade.rotation}
           geometry={katana.nodes.Blade.geometry}
         >
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.End_Piece.position}
           geometry={katana.nodes.End_Piece.geometry}
           rotation={katana.nodes.End_Piece.rotation}
@@ -23,6 +25,7 @@ export default function Katana(props: GroupProps): JSX.Element {
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.Handguard.position}
           geometry={katana.nodes.Handguard.geometry}
           rotation={katana.nodes.Handguard.rotation}
@@ -30,6 +33,7 @@ export default function Katana(props: GroupProps): JSX.Element {
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.Handle.position}
           geometry={katana.nodes.Handle.geometry}
           rotation={katana.nodes.Handle.rotation}
@@ -37,6 +41,7 @@ export default function Katana(props: GroupProps): JSX.Element {
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.Handle_Cloth.position}
           geometry={katana.nodes.Handle_Cloth.geometry}
           rotation={katana.nodes.Handle_Cloth.rotation}
@@ -44,6 +49,7 @@ export default function Katana(props: GroupProps): JSX.Element {
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.Hilt.position}
           geometry={katana.nodes.Hilt.geometry}
           rotation={katana.nodes.Hilt.rotation}
@@ -51,6 +57,7 @@ export default function Katana(props: GroupProps): JSX.Element {
           <meshBasicMaterial map={bakedTexture} map-flipY={false} />
         </mesh>
         <mesh
+          castShadow
           position={katana.nodes.Hilt_2.position}
           geometry={katana.nodes.Hilt_2.geometry}
           rotation={katana.nodes.Hilt_2.rotation}
