@@ -35,7 +35,7 @@ export default function Portal(): JSX.Element {
     if (portalMatRef.current) {
       portalMatRef.current.uTime += delta;
     }
-  });
+  }); 
 
   return (
     <>
